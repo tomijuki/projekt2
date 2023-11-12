@@ -1,0 +1,49 @@
+//index.pug
+html     
+    head 
+        title Simple js for get data
+    body 
+        - var loginFormStyle = authenticated ? 'none' : 'block';        
+        - var logoutButtonStyle = authenticated ? 'block' : 'none';
+        - var sqlInjectionStyle = sqlInjection ? 'block' : 'none';   
+        div(class='links')
+            a(href='/') Home
+            a(href='/register' id="registerlink" style="display:" + loginFormStyle) Register
+            
+        div(class="login-form", style="display:" + loginFormStyle)
+            h1 Login and get data
+            p Login forma ne broji pristupe s IP adrese ukoliko je uključena ranjivost. Inače limitira na 5 pokušaja unutar pola sata.
+            form(action="", method="post")
+                label(for="chkBrokenAuthentication") Ranjivost uključena:
+                input(id="chkBrokenAuthentication" type="checkbox" name="chkBrokenAuthentication")
+                br
+                label(for="username") Username:
+                input(type="text", id="username", name="username", required) 
+                br
+                label(for="password") Password:
+                input(type="password", id="password", name="password", required) 
+                br                
+                input(type="button", id="btnLogin", value="Login") 
+        div(class="content-form")
+            input(type="button", id="btnLogout", value="Logout", style="display: " + logoutButtonStyle) 
+            
+        div(class="input-form", style="display:" + sqlInjectionStyle)
+            h1 SQL ubacivanje (SQL injection)
+            form(action="", method="post")
+                p Forma ne provjerava sadržaj i duljinu opisa ukoliko je ranjivost uključena, te omogućuje napad SQL ubacivanjem. Inače se koristi parametrizirani query te se provjeravaju unosi da nemaju nedozvoljene znakove poput ', ", =, ;, --, /*, */ i slično. Primjer napada tautologijom bi bio #[strong ' OR '1'='1]
+                br
+                label(for="chkSQLInjection") Ranjivost uključena:
+                input(id="chkSQLInjection" type="checkbox" name="chkSQLInjection" )
+                br
+                label(for="description") Traženi opis:
+                input(type="textarea", id="description", name="description")
+                br
+                label(for="pinSQLInjection") PIN:
+                input(type="password", id="pinSQLInjection", name="pinSQLInjection")
+                br
+                button(type="button", id="btnSQLInjection", value="Dohvati podatke") Dohvati podatke
+
+        div(id="content")       
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js") 
+        script 
+            include ../public/js/site.js 

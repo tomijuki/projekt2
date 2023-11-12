@@ -1,0 +1,37 @@
+// register.pug
+html
+  head
+    title Register
+  body
+    div(class='links')
+      a(href='/') Home
+    h1 Register
+    form(action="", method="post")
+      p Register forma ne provjerava korisničko ime, lozinku, pin, datum niti opis ukoliko je ranjivost uključena. Inače se provjerva duljina korisničkog imena, sadržaj lozinke, duljina opisa, sadržaj i duljina pin-a.
+      br
+      label(for="chkBrokenAuthentication") Ranjivost uključena:
+      input(id="chkBrokenAuthentication" type="checkbox" name="chkBrokenAuthentication" )
+      br
+      label(for="username") Username:
+      input(type="text", id="username", name="username", required)
+      br
+      label(for="password") Password: (make sure to include special character, number, capital letter and 12 characters in total)
+      input(type="password", id="password", name="password", required)
+      br
+      label(for="passwordRepeat") Repeat password:
+      input(type="password", id="passwordRepeat", name="passwordRepeat", required)
+      br
+      label(for="description") Description (over 16 characters):
+      input(type="text", id="description", name="description", minlength="16", required)
+      br
+      label(for="birthdate") Birthdate:
+      input(type="date", id="birthdate", name="birthdate", required)
+      br
+      label(for="pin") PIN (6 digits):
+      input(type="password", id="pin", name="pin", required)
+      br
+      input(type="button", id='btnRegister', value="Register")
+    div(id="content")    
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js") 
+    script 
+        include ../public/js/register.js 

@@ -1,0 +1,27 @@
+{
+    "scripts": {
+        "build": "npm install && npm run clean && tsc && npm run copy-views && npm run copy-public",
+        "clean": "shx rm -rf dist",
+        "copy-views": "shx cp -r src/views/ dist",
+        "copy-public": "shx cp -r src/public/ dist/public",
+        "start": "npm run build && node dist/app.js"
+    },
+    "dependencies": {
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-rate-limit": "^7.1.4",
+        "express-session": "^1.17.3",
+        "pg": "^8.11.3",
+        "pug": "^3.0.2"
+    },
+    "devDependencies": {
+        "@types/cookie-parser": "^1.4.3",
+        "@types/express": "^4.17.14",
+        "@types/express-session": "^1.17.10",
+        "@types/node": "^20.8.6",
+        "@types/pg": "^8.10.9",
+        "shx": "^0.3.4"
+    }
+}
